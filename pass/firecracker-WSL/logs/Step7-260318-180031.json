@@ -1,0 +1,76 @@
+{
+  "step": 7,
+  "vm_id": "noble-test",
+  "vm_ip": "172.30.0.2",
+  "endpoint": "/session/:id/message",
+  "url": "http://172.30.0.2:4096/session/ses_2ff9b78b3ffeI2LHNlwfMf2K40/message",
+  "body": {
+    "info": {
+      "role": "assistant",
+      "time": {
+        "created": 1773828081531,
+        "completed": 1773828083574
+      },
+      "parentID": "msg_d0064876f001g0wNNFixVHdPV3",
+      "modelID": "gemini-flash-latest",
+      "providerID": "google",
+      "mode": "build",
+      "agent": "build",
+      "path": {
+        "cwd": "/root",
+        "root": "/"
+      },
+      "cost": 0.0036744,
+      "tokens": {
+        "total": 11632,
+        "input": 11548,
+        "output": 28,
+        "reasoning": 56,
+        "cache": {
+          "read": 0,
+          "write": 0
+        }
+      },
+      "finish": "stop",
+      "id": "msg_d0064877b001d7ysOhVt51v5tG",
+      "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40"
+    },
+    "parts": [
+      {
+        "type": "step-start",
+        "id": "prt_d00648e50001aEl9HaIrZUGEta",
+        "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+        "messageID": "msg_d0064877b001d7ysOhVt51v5tG"
+      },
+      {
+        "type": "text",
+        "text": "我目前使用的是 **gemini-flash-latest** (具體模型 ID 為 `google/gemini-flash-latest`)。",
+        "time": {
+          "start": 1773828083555,
+          "end": 1773828083555
+        },
+        "id": "prt_d00648e52001iP0OeptTqBTcAa",
+        "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+        "messageID": "msg_d0064877b001d7ysOhVt51v5tG"
+      },
+      {
+        "type": "step-finish",
+        "reason": "stop",
+        "cost": 0.0036744,
+        "tokens": {
+          "total": 11632,
+          "input": 11548,
+          "output": 28,
+          "reasoning": 56,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        },
+        "id": "prt_d00648f6c0016XE0hEOdqqXfeR",
+        "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+        "messageID": "msg_d0064877b001d7ysOhVt51v5tG"
+      }
+    ]
+  }
+}

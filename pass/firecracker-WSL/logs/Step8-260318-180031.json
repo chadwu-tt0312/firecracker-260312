@@ -1,0 +1,202 @@
+{
+  "step": 8,
+  "vm_id": "noble-test",
+  "vm_ip": "172.30.0.2",
+  "session_id": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+  "shell": {
+    "endpoint": "/session/:id/shell",
+    "url": "http://172.30.0.2:4096/session/ses_2ff9b78b3ffeI2LHNlwfMf2K40/shell",
+    "http_code": "200",
+    "body": {
+      "info": {
+        "id": "msg_d00648fb5001vmZpoa2H3Tkqnu",
+        "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+        "parentID": "msg_d00648fb3001cHyqi58IDZwMu4",
+        "mode": "build",
+        "agent": "build",
+        "cost": 0,
+        "path": {
+          "cwd": "/root",
+          "root": "/"
+        },
+        "time": {
+          "created": 1773828083637,
+          "completed": 1773828083682
+        },
+        "role": "assistant",
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        },
+        "modelID": "gemini-flash-latest",
+        "providerID": "google"
+      },
+      "parts": [
+        {
+          "type": "tool",
+          "id": "prt_d00648fb5002DimBVO3FXAoRjE",
+          "messageID": "msg_d00648fb5001vmZpoa2H3Tkqnu",
+          "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+          "tool": "bash",
+          "callID": "01KM0693XPHW379Z14EGJBYSK9",
+          "state": {
+            "status": "completed",
+            "time": {
+              "start": 1773828083639,
+              "end": 1773828083684
+            },
+            "input": {
+              "command": "set -euo pipefail; sudo test -d /root/.config/opencode/skills; sudo mountpoint -q /root/.config/opencode/skills; ls -la /root/.config/opencode/skills/CallTracker/SKILL.md"
+            },
+            "title": "",
+            "metadata": {
+              "output": "",
+              "description": ""
+            },
+            "output": ""
+          }
+        }
+      ]
+    }
+  },
+  "message": {
+    "endpoint": "/session/:id/message",
+    "url": "http://172.30.0.2:4096/session/ses_2ff9b78b3ffeI2LHNlwfMf2K40/message",
+    "http_code": "200",
+    "body": {
+      "info": {
+        "role": "assistant",
+        "time": {
+          "created": 1773828088309,
+          "completed": 1773828090997
+        },
+        "parentID": "msg_d00648ff0001apS7yavADryP5K",
+        "modelID": "gemini-flash-latest",
+        "providerID": "google",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/root",
+          "root": "/"
+        },
+        "cost": 0.00253565,
+        "tokens": {
+          "total": 12871,
+          "input": 4468,
+          "output": 147,
+          "reasoning": 86,
+          "cache": {
+            "read": 8170,
+            "write": 0
+          }
+        },
+        "finish": "stop",
+        "id": "msg_d0064a1f50012JEB66cW3dbDXN",
+        "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40"
+      },
+      "parts": [
+        {
+          "type": "step-start",
+          "id": "prt_d0064a9e1001sN1zNYjynibuzx",
+          "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+          "messageID": "msg_d0064a1f50012JEB66cW3dbDXN"
+        },
+        {
+          "type": "text",
+          "text": "1) 追加的 JSONL 行：\n`{\"timestamp\":\"2026-03-18T10:01:28Z\",\"agent\":\"user_direct\",\"task\":\"測試 Agent 呼叫流程\",\"remarks\":\"驗證自動判斷是否需使用工具/skills\",\"status\":\"INFO\"}`\n\n2) 追加後 `logs/audit_trails.jsonl` 的最後一行：\n`{\"timestamp\":\"2026-03-18T10:01:28Z\",\"agent\":\"user_direct\",\"task\":\"測試 Agent 呼叫流程\",\"remarks\":\"驗證自動判斷是否需使用工具/skills\",\"status\":\"INFO\"}`",
+          "time": {
+            "start": 1773828090976,
+            "end": 1773828090976
+          },
+          "id": "prt_d0064a9e7001Xp2SQS1eAO7I1P",
+          "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+          "messageID": "msg_d0064a1f50012JEB66cW3dbDXN"
+        },
+        {
+          "type": "step-finish",
+          "reason": "stop",
+          "cost": 0.00253565,
+          "tokens": {
+            "total": 12871,
+            "input": 4468,
+            "output": 147,
+            "reasoning": 86,
+            "cache": {
+              "read": 8170,
+              "write": 0
+            }
+          },
+          "id": "prt_d0064ac65001qWJPBmLFbb8seC",
+          "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+          "messageID": "msg_d0064a1f50012JEB66cW3dbDXN"
+        }
+      ]
+    }
+  },
+  "verify": {
+    "endpoint": "/session/:id/shell",
+    "url": "http://172.30.0.2:4096/session/ses_2ff9b78b3ffeI2LHNlwfMf2K40/shell",
+    "http_code": "200",
+    "body": {
+      "info": {
+        "id": "msg_d0064ac86001rHjeCYxaC2XTke",
+        "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+        "parentID": "msg_d0064ac83001taifEeSzwrgmgp",
+        "mode": "build",
+        "agent": "build",
+        "cost": 0,
+        "path": {
+          "cwd": "/root",
+          "root": "/"
+        },
+        "time": {
+          "created": 1773828091014,
+          "completed": 1773828091029
+        },
+        "role": "assistant",
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        },
+        "modelID": "gemini-flash-latest",
+        "providerID": "google"
+      },
+      "parts": [
+        {
+          "type": "tool",
+          "id": "prt_d0064ac87001hw66F1sYKOhxeF",
+          "messageID": "msg_d0064ac86001rHjeCYxaC2XTke",
+          "sessionID": "ses_2ff9b78b3ffeI2LHNlwfMf2K40",
+          "tool": "bash",
+          "callID": "01KM069B47PD9CEWH4347J7YMQ",
+          "state": {
+            "status": "completed",
+            "time": {
+              "start": 1773828091015,
+              "end": 1773828091029
+            },
+            "input": {
+              "command": "set -euo pipefail; test -f logs/audit_trails.jsonl; tail -n 1 logs/audit_trails.jsonl"
+            },
+            "title": "",
+            "metadata": {
+              "output": "{\"timestamp\":\"2026-03-18T10:01:28Z\",\"agent\":\"user_direct\",\"task\":\"測試 Agent 呼叫流程\",\"remarks\":\"驗證自動判斷是否需使用工具/skills\",\"status\":\"INFO\"}\n",
+              "description": ""
+            },
+            "output": "{\"timestamp\":\"2026-03-18T10:01:28Z\",\"agent\":\"user_direct\",\"task\":\"測試 Agent 呼叫流程\",\"remarks\":\"驗證自動判斷是否需使用工具/skills\",\"status\":\"INFO\"}\n"
+          }
+        }
+      ]
+    }
+  }
+}

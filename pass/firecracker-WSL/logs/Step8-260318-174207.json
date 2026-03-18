@@ -1,0 +1,141 @@
+{
+  "step": 8,
+  "vm_id": "noble-test",
+  "vm_ip": "172.30.0.2",
+  "session_id": "ses_2ffac3ce9ffea8AqZAu9V0v0tx",
+  "shell": {
+    "endpoint": "/session/:id/shell",
+    "url": "http://172.30.0.2:4096/session/ses_2ffac3ce9ffea8AqZAu9V0v0tx/shell",
+    "http_code": "200",
+    "body": {
+      "info": {
+        "id": "msg_d0053ccce001BVyTK7JowJ8gWV",
+        "sessionID": "ses_2ffac3ce9ffea8AqZAu9V0v0tx",
+        "parentID": "msg_d0053cccc001LlJUHILFzNcLeA",
+        "mode": "build",
+        "agent": "build",
+        "cost": 0,
+        "path": {
+          "cwd": "/root",
+          "root": "/"
+        },
+        "time": {
+          "created": 1773826985166,
+          "completed": 1773826985205
+        },
+        "role": "assistant",
+        "tokens": {
+          "input": 0,
+          "output": 0,
+          "reasoning": 0,
+          "cache": {
+            "read": 0,
+            "write": 0
+          }
+        },
+        "modelID": "gemini-flash-latest",
+        "providerID": "google"
+      },
+      "parts": [
+        {
+          "type": "tool",
+          "id": "prt_d0053cccf001RzS9F68ApZiU8O",
+          "messageID": "msg_d0053ccce001BVyTK7JowJ8gWV",
+          "sessionID": "ses_2ffac3ce9ffea8AqZAu9V0v0tx",
+          "tool": "bash",
+          "callID": "01KM057K6FMV503N3RFFDY7GYR",
+          "state": {
+            "status": "completed",
+            "time": {
+              "start": 1773826985168,
+              "end": 1773826985206
+            },
+            "input": {
+              "command": "set -euo pipefail; sudo test -d /root/.config/opencode/skills; sudo mountpoint -q /root/.config/opencode/skills; ls -la /root/.config/opencode/skills/CallTracker/SKILL.md"
+            },
+            "title": "",
+            "metadata": {
+              "output": "",
+              "description": ""
+            },
+            "output": ""
+          }
+        }
+      ]
+    }
+  },
+  "message": {
+    "endpoint": "/session/:id/message",
+    "url": "http://172.30.0.2:4096/session/ses_2ffac3ce9ffea8AqZAu9V0v0tx/message",
+    "http_code": "200",
+    "body": {
+      "info": {
+        "role": "assistant",
+        "time": {
+          "created": 1773827000592,
+          "completed": 1773827004055
+        },
+        "parentID": "msg_d0053cd020011Ho48917xJa9S4",
+        "modelID": "gemini-flash-latest",
+        "providerID": "google",
+        "mode": "build",
+        "agent": "build",
+        "path": {
+          "cwd": "/root",
+          "root": "/"
+        },
+        "cost": 0.002507175,
+        "tokens": {
+          "total": 13029,
+          "input": 4569,
+          "output": 178,
+          "reasoning": 29,
+          "cache": {
+            "read": 8253,
+            "write": 0
+          }
+        },
+        "finish": "stop",
+        "id": "msg_d00540910001MjfR1aPSLKLlIB",
+        "sessionID": "ses_2ffac3ce9ffea8AqZAu9V0v0tx"
+      },
+      "parts": [
+        {
+          "type": "step-start",
+          "id": "prt_d005414200014xbRGvDT8poLvB",
+          "sessionID": "ses_2ffac3ce9ffea8AqZAu9V0v0tx",
+          "messageID": "msg_d00540910001MjfR1aPSLKLlIB"
+        },
+        {
+          "type": "text",
+          "text": "我已經完成了測試 Agent 呼叫流程的示範。\n\n1. 我首先在 `/root/factorial.py` 中建立了一個計算階乘的 Python 腳本。\n2. 接著，我使用了 `explore` 類型的 subagent (子代理) 來分析並解釋該腳本的內容。\n\n**Subagent 的分析結果：**\n> 該腳本定義了一個遞迴函式，透過將給定的非負整數乘以其前一個數的階乘來計算階乘。當直接執行時，程式會計算並印出 5 的階乘（結果為 120）以示範其功能。\n\n這展示了主 Agent 如何委託複雜任務（如程式碼探索與分析）給專門的子代理處理，並將結果回傳給您的完整流程。",
+          "time": {
+            "start": 1773827004047,
+            "end": 1773827004047
+          },
+          "id": "prt_d00541425001Hi2QTh7NDnNxzO",
+          "sessionID": "ses_2ffac3ce9ffea8AqZAu9V0v0tx",
+          "messageID": "msg_d00540910001MjfR1aPSLKLlIB"
+        },
+        {
+          "type": "step-finish",
+          "reason": "stop",
+          "cost": 0.002507175,
+          "tokens": {
+            "total": 13029,
+            "input": 4569,
+            "output": 178,
+            "reasoning": 29,
+            "cache": {
+              "read": 8253,
+              "write": 0
+            }
+          },
+          "id": "prt_d00541693001d6kUyZgT5WFEHK",
+          "sessionID": "ses_2ffac3ce9ffea8AqZAu9V0v0tx",
+          "messageID": "msg_d00540910001MjfR1aPSLKLlIB"
+        }
+      ]
+    }
+  }
+}

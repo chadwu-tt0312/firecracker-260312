@@ -1,0 +1,69 @@
+{
+  "info": {
+    "role": "assistant",
+    "time": {
+      "created": 1773824418369,
+      "completed": 1773824420945
+    },
+    "parentID": "msg_d002ca22f0014pnJpwwFKhQ3rG",
+    "modelID": "gemini-flash-latest",
+    "providerID": "google",
+    "mode": "build",
+    "agent": "build",
+    "path": {
+      "cwd": "/root",
+      "root": "/"
+    },
+    "cost": 0.001887675,
+    "tokens": {
+      "total": 11650,
+      "input": 3407,
+      "output": 28,
+      "reasoning": 74,
+      "cache": {
+        "read": 8141,
+        "write": 0
+      }
+    },
+    "finish": "stop",
+    "id": "msg_d002ca241001nk9PBIfaBGp3ir",
+    "sessionID": "ses_2ffd35df5ffeRZRDzuFs2mXOtP"
+  },
+  "parts": [
+    {
+      "type": "step-start",
+      "id": "prt_d002cabde001689MQwMBX4zdBQ",
+      "sessionID": "ses_2ffd35df5ffeRZRDzuFs2mXOtP",
+      "messageID": "msg_d002ca241001nk9PBIfaBGp3ir"
+    },
+    {
+      "type": "text",
+      "text": "目前使用的是 **gemini-flash-latest** (具體型號 ID 為 `google/gemini-flash-latest`)。",
+      "time": {
+        "start": 1773824420931,
+        "end": 1773824420931
+      },
+      "id": "prt_d002cabe00011Us0XBkL4TyvHr",
+      "sessionID": "ses_2ffd35df5ffeRZRDzuFs2mXOtP",
+      "messageID": "msg_d002ca241001nk9PBIfaBGp3ir"
+    },
+    {
+      "type": "step-finish",
+      "reason": "stop",
+      "cost": 0.001887675,
+      "tokens": {
+        "total": 11650,
+        "input": 3407,
+        "output": 28,
+        "reasoning": 74,
+        "cache": {
+          "read": 8141,
+          "write": 0
+        }
+      },
+      "id": "prt_d002cac4b001pG3mZamtc0VYyD",
+      "sessionID": "ses_2ffd35df5ffeRZRDzuFs2mXOtP",
+      "messageID": "msg_d002ca241001nk9PBIfaBGp3ir"
+    }
+  ]
+}

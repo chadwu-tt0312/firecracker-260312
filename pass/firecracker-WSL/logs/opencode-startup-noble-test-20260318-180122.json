@@ -1,0 +1,11 @@
+{
+  "vm_id": "noble-test",
+  "kernel": "/home/chad/firecracker-260312/bin/vmlinux.bin",
+  "rootfs": "/home/chad/firecracker-260312/bin/ubuntu-noble-base.rootfs.ext4",
+  "host_ip": "172.30.0.1",
+  "vm_ip": "172.30.0.2",
+  "instance_start_ts_ms": 1773828031686,
+  "ready_ts_ms": 1773828082332,
+  "startup_ms": 50646,
+  "instance_start_human": "2026-03-18T18:00:31"
+}

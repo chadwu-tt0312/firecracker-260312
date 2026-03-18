@@ -1,0 +1,30 @@
+### opencode
+
+### 獲取目前所有可用的模型與 Provider
+curl -X GET http://localhost:4096/config/providers
+
+### 更新全域設定
+curl -X PATCH http://localhost:4096/config \
+  -H "Content-Type: application/json" \
+  -d '{
+    "provider": {
+      "openai": {
+        "options": {
+          "baseURL": "https://your-proxy.com/v1"
+        }
+      }
+    }
+  }'
+
+### 在特定 Session 中變更模型
+curl -X POST http://localhost:4096/session/ses_your_id/message \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": {
+      "providerID": "anthropic",
+      "modelID": "claude-3-5-sonnet-20240620"
+    },
+    "parts": [
+      { "type": "text", "text": "請幫我分析這段程式碼" }
+    ]
+  }'

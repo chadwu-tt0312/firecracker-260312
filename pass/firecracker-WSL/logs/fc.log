@@ -1,0 +1,530 @@
+2026-03-17T11:24:24.756229160 [noble-test:main] Running Firecracker v1.15.0
+2026-03-17T11:24:24.756423095 [noble-test:main] Listening on API socket ("/tmp/fc-noble-test/api.sock").
+2026-03-17T11:24:24.756732048 [noble-test:fc_api] API server started.
+2026-03-17T11:24:24.761691868 [noble-test:fc_api] The API server received a Put request on "/boot-source" with body "{\n        \"kernel_image_path\": \"/home/chad/firecracker-260312/bin/vmlinux.bin\",\n        \"boot_args\": \"console=ttyS0 reboot=k panic=1 pci=off\"\n      }".
+2026-03-17T11:24:24.761820387 [noble-test:fc_api] The request was executed successfully. Status code: 204 No Content.
+2026-03-17T11:24:24.766387462 [noble-test:fc_api] The API server received a Put request on "/drives/rootfs" with body "{\n        \"drive_id\": \"rootfs\",\n        \"path_on_host\": \"/home/chad/firecracker-260312/bin/ubuntu-noble-base.rootfs.ext4\",\n        \"is_root_device\": true,\n        \"is_read_only\": false\n      }".
+2026-03-17T11:24:24.766490960 [noble-test:fc_api] The request was executed successfully. Status code: 204 No Content.
+2026-03-17T11:24:24.770725699 [noble-test:fc_api] The API server received a Put request on "/network-interfaces/eth0" with body "{\n        \"iface_id\": \"eth0\",\n        \"guest_mac\": \"52:54:00:1e:00:02\",\n        \"host_dev_name\": \"fc-noble-test\"\n      }".
+2026-03-17T11:24:24.770987530 [noble-test:fc_api] The request was executed successfully. Status code: 204 No Content.
+2026-03-17T11:24:24.776246906 [noble-test:fc_api] The API server received a Put request on "/actions" with body "{ \"action_type\": \"InstanceStart\" }".
+2026-03-17T11:24:24.818178975 [noble-test:main] Artificially kick devices
+2026-03-17T11:24:24.818224418 [noble-test:fc_vcpu 0] Received a VcpuEvent::Resume message with immediate_exit enabled. immediate_exit was disabled before proceeding
+2026-03-17T11:24:24.818276862 [noble-test:fc_api] The request was executed successfully. Status code: 204 No Content.
+[    0.000000] Linux version 4.14.174 (@57edebb99db7) (gcc version 7.5.0 (Ubuntu 7.5.0-3ubuntu1~18.04)) #2 SMP Wed Jul 14 11:47:24 UTC 2021
+[    0.000000] Command line: console=ttyS0 reboot=k panic=1 pci=off pci=off root=/dev/vda rw virtio_mmio.device=4K@0xc0001000:5 virtio_mmio.device=4K@0xc0002000:6
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.000000] x86/fpu: Enabled xstate features 0x7, context size is 832 bytes, using 'compacted' format.
+[    0.000000] e820: BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x000000000009fc00-0x00000000000dffff] reserved
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x0000000007ffffff] usable
+[    0.000000] BIOS-e820: [mem 0x00000000eec00000-0x00000000febfffff] reserved
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] DMI not present or invalid.
+[    0.000000] Hypervisor detected: KVM
+[    0.000000] tsc: Using PIT calibration value
+[    0.000000] e820: last_pfn = 0x8000 max_arch_pfn = 0x400000000
+[    0.000000] x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+[    0.000000] found SMP MP-table at [mem 0x0009fc00-0x0009fc0f]
+[    0.000000] Scanning 1 areas for low memory corruption
+[    0.000000] Using GB pages for direct mapping
+[    0.000000] No NUMA configuration found
+[    0.000000] Faking a node at [mem 0x0000000000000000-0x0000000007ffffff]
+[    0.000000] NODE_DATA(0) allocated [mem 0x07fde000-0x07ffffff]
+[    0.000000] kvm-clock: Using msrs 4b564d01 and 4b564d00
+[    0.000000] kvm-clock: cpu 0, msr 0:7fdc001, primary cpu clock
+[    0.000000] kvm-clock: using sched offset of 76207963 cycles
+[    0.000000] clocksource: kvm-clock: mask: 0xffffffffffffffff max_cycles: 0x1cd42e4dffb, max_idle_ns: 881590591483 ns
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.000000]   DMA32    [mem 0x0000000001000000-0x0000000007ffffff]
+[    0.000000]   Normal   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.000000]   node   0: [mem 0x0000000000100000-0x0000000007ffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000001000-0x0000000007ffffff]
+[    0.000000] Intel MultiProcessor Specification v1.4
+[    0.000000] MPTABLE: OEM ID: FC      
+[    0.000000] MPTABLE: Product ID: 000000000000
+[    0.000000] MPTABLE: APIC at: 0xFEE00000
+[    0.000000] Processor #0 (Bootup-CPU)
+[    0.000000] IOAPIC[0]: apic_id 2, version 17, address 0xfec00000, GSI 0-23
+[    0.000000] Processors: 1
+[    0.000000] smpboot: Allowing 1 CPUs, 0 hotplug CPUs
+[    0.000000] PM: Registered nosave memory: [mem 0x00000000-0x00000fff]
+[    0.000000] PM: Registered nosave memory: [mem 0x0009f000-0x0009ffff]
+[    0.000000] PM: Registered nosave memory: [mem 0x000a0000-0x000dffff]
+[    0.000000] PM: Registered nosave memory: [mem 0x000e0000-0x000fffff]
+[    0.000000] e820: [mem 0x08000000-0xeebfffff] available for PCI devices
+[    0.000000] Booting paravirtualized kernel on KVM
+[    0.000000] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645519600211568 ns
+[    0.000000] random: get_random_bytes called from start_kernel+0x94/0x486 with crng_init=0
+[    0.000000] setup_percpu: NR_CPUS:128 nr_cpumask_bits:128 nr_cpu_ids:1 nr_node_ids:1
+[    0.000000] percpu: Embedded 41 pages/cpu s128600 r8192 d31144 u2097152
+[    0.000000] KVM setup async PF for cpu 0
+[    0.000000] kvm-stealtime: cpu 0, msr 7c15040
+[    0.000000] PV qspinlock hash table entries: 256 (order: 0, 4096 bytes)
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 32137
+[    0.000000] Policy zone: DMA32
+[    0.000000] Kernel command line: console=ttyS0 reboot=k panic=1 pci=off pci=off root=/dev/vda rw virtio_mmio.device=4K@0xc0001000:5 virtio_mmio.device=4K@0xc0002000:6
+[    0.000000] PID hash table entries: 512 (order: 0, 4096 bytes)
+[    0.000000] Memory: 111016K/130680K available (8204K kernel code, 645K rwdata, 1480K rodata, 1324K init, 2792K bss, 19664K reserved, 0K cma-reserved)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[    0.004000] Hierarchical RCU implementation.
+[    0.004000] 	RCU restricting CPUs from NR_CPUS=128 to nr_cpu_ids=1.
+[    0.004000] RCU: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=1
+[    0.004000] NR_IRQS: 4352, nr_irqs: 48, preallocated irqs: 16
+[    0.004000] Console: colour dummy device 80x25
+[    0.004000] console [ttyS0] enabled
+[    0.004000] tsc: Detected 2495.998 MHz processor
+[    0.004000] Calibrating delay loop (skipped) preset value.. 4991.99 BogoMIPS (lpj=9983992)
+[    0.004000] pid_max: default: 32768 minimum: 301
+[    0.004000] Security Framework initialized
+[    0.004057] SELinux:  Initializing.
+[    0.005036] Dentry cache hash table entries: 16384 (order: 5, 131072 bytes)
+[    0.006534] Inode-cache hash table entries: 8192 (order: 4, 65536 bytes)
+[    0.008014] Mount-cache hash table entries: 512 (order: 0, 4096 bytes)
+[    0.009307] Mountpoint-cache hash table entries: 512 (order: 0, 4096 bytes)
+[    0.012268] Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+[    0.013341] Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+[    0.014512] Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+[    0.016012] Spectre V2 : Mitigation: Enhanced IBRS
+[    0.016976] Spectre V2 : Spectre v2 / SpectreRSB mitigation: Filling RSB on context switch
+[    0.018635] Spectre V2 : mitigation: Enabling conditional Indirect Branch Prediction Barrier
+[    0.020005] Speculative Store Bypass: Mitigation: Speculative Store Bypass disabled via prctl and seccomp
+[    0.033511] Freeing SMP alternatives memory: 28K
+[    0.036028] smpboot: Max logical packages: 1
+[    0.037391] x2apic enabled
+[    0.038420] Switched APIC routing to physical x2apic.
+[    0.040000] ..TIMER: vector=0x30 apic1=0 pin1=0 apic2=-1 pin2=-1
+[    0.040000] smpboot: CPU0: Intel(R) Xeon(R) Processor (family: 0x6, model: 0xbf, stepping: 0x2)
+[    0.040000] Performance Events: unsupported p6 CPU model 191 no PMU driver, software events only.
+[    0.040000] Hierarchical SRCU implementation.
+[    0.040527] smp: Bringing up secondary CPUs ...
+[    0.041437] smp: Brought up 1 node, 1 CPU
+[    0.042272] smpboot: Total of 1 processors activated (4991.99 BogoMIPS)
+[    0.044319] devtmpfs: initialized
+[    0.045049] x86/mm: Memory block size: 128MB
+[    0.046146] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.048011] futex hash table entries: 256 (order: 2, 16384 bytes)
+[    0.049459] NET: Registered protocol family 16
+[    0.050529] cpuidle: using governor ladder
+[    0.051361] cpuidle: using governor menu
+[    0.057338] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.058695] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.060157] SCSI subsystem initialized
+[    0.060931] pps_core: LinuxPPS API ver. 1 registered
+[    0.061920] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.063756] PTP clock support registered
+[    0.064018] dmi: Firmware registration failed.
+[    0.065081] NetLabel: Initializing
+[    0.065717] NetLabel:  domain hash size = 128
+[    0.066537] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    0.067587] NetLabel:  unlabeled traffic allowed by default
+[    0.068189] clocksource: Switched to clocksource kvm-clock
+[    0.069207] VFS: Disk quotas dquot_6.6.0
+[    0.069954] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.072078] NET: Registered protocol family 2
+[    0.073057] TCP established hash table entries: 1024 (order: 1, 8192 bytes)
+[    0.074354] TCP bind hash table entries: 1024 (order: 2, 16384 bytes)
+[    0.075535] TCP: Hash tables configured (established 1024 bind 1024)
+[    0.076813] UDP hash table entries: 256 (order: 1, 8192 bytes)
+[    0.078669] UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+[    0.079865] NET: Registered protocol family 1
+[    0.081228] virtio-mmio: Registering device virtio-mmio.0 at 0xc0001000-0xc0001fff, IRQ 5.
+[    0.083131] virtio-mmio: Registering device virtio-mmio.1 at 0xc0002000-0xc0002fff, IRQ 6.
+[    0.085381] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x23fa754787d, max_idle_ns: 440795210092 ns
+[    0.087818] platform rtc_cmos: registered platform RTC device (no PNP device found)
+[    0.089472] Scanning for low memory corruption every 60 seconds
+[    0.090646] audit: initializing netlink subsys (disabled)
+[    0.091867] Initialise system trusted keyrings
+[    0.092703] Key type blacklist registered
+[    0.093591] audit: type=2000 audit(1773717864.961:1): state=initialized audit_enabled=0 res=1
+[    0.095167] workingset: timestamp_bits=36 max_order=15 bucket_order=0
+[    0.098264] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    0.100087] Key type asymmetric registered
+[    0.100936] Asymmetric key parser 'x509' registered
+[    0.101915] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)
+[    0.103390] io scheduler noop registered (default)
+[    0.104370] io scheduler cfq registered
+[    0.105264] virtio-mmio virtio-mmio.0: Failed to enable 64-bit or 32-bit DMA.  Trying to continue, but this might not work.
+[    0.107528] virtio-mmio virtio-mmio.1: Failed to enable 64-bit or 32-bit DMA.  Trying to continue, but this might not work.
+[    0.109836] Serial: 8250/16550 driver, 1 ports, IRQ sharing disabled
+[    0.134659] serial8250: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a U6_16550A
+[    0.137435] loop: module loaded
+[    0.138820] Loading iSCSI transport class v2.0-870.
+[    0.139843] iscsi: registered transport (tcp)
+[    0.140769] tun: Universal TUN/TAP device driver, 1.6
+2026-03-17T11:24:25.111988627 [noble-test:fc_vcpu 0] Failed to trigger i8042 kbd interrupt (disabled by guest OS)
+[    0.151566] i8042: Failed to disable AUX port, but continuing anyway... Is this a SiS?
+[    0.153949] i8042: If AUX port is really absent please use the 'i8042.noaux' option
+2026-03-17T11:24:25.125713027 [noble-test:fc_vcpu 0] Failed to trigger i8042 kbd interrupt (disabled by guest OS)
+[    0.416102] serio: i8042 KBD port at 0x60,0x64 irq 1
+[    0.424539] hidraw: raw HID events driver (C) Jiri Kosina
+[    0.428256] nf_conntrack version 0.5.0 (1024 buckets, 4096 max)
+[    0.430696] ip_tables: (C) 2000-2006 Netfilter Core Team
+[    0.432157] Initializing XFRM netlink socket
+[    0.433107] NET: Registered protocol family 10
+[    0.434509] Segment Routing with IPv6
+[    0.435266] NET: Registered protocol family 17
+[    0.436199] Bridge firewalling registered
+[    0.437038] NET: Registered protocol family 40
+[    0.438000] sched_clock: Marking stable (436183494, 0)->(550347415, -114163921)
+[    0.439540] registered taskstats version 1
+[    0.440377] Loading compiled-in X.509 certificates
+[    0.441761] Loaded X.509 cert 'Build time autogenerated kernel key: e98e9d271da5d0a322cc4d7bfaa8c2c4c3e46010'
+[    0.443810] Key type encrypted registered
+[    0.965060] input: AT Raw Set 2 keyboard as /devices/platform/i8042/serio0/input/input0
+[    0.988519] EXT4-fs (vda): recovery complete
+[    0.990696] EXT4-fs (vda): mounted filesystem with ordered data mode. Opts: (null)
+[    0.993123] VFS: Mounted root (ext4 filesystem) on device 254:0.
+[    0.995323] devtmpfs: mounted
+[    0.997432] Freeing unused kernel memory: 1324K
+[    1.008196] Write protecting the kernel read-only data: 12288k
+[    1.020525] Freeing unused kernel memory: 2016K
+[    1.025068] Freeing unused kernel memory: 568K
+SELinux:  Could not open policy file <= /etc/selinux/targeted/policy/policy.33:  No such file or directory
+[    1.046870] systemd[1]: Failed to find module 'autofs4'
+[    1.049655] random: systemd: uninitialized urandom read (16 bytes read)
+[    1.051134] systemd[1]: systemd 255.4-1ubuntu8.12 running in system mode (+PAM +AUDIT +SELINUX +APPARMOR +IMA +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN +IPTC +KMOD +LIBCRYPTSETUP +LIBFDISK +PCRE2 -PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD -BPF_FRAMEWORK -XKBCOMMON +UTMP +SYSVINIT default-hierarchy=unified)
+[    1.057571] systemd[1]: Detected virtualization kvm.
+[    1.058961] systemd[1]: Detected architecture x86-64.
+[    1.060378] systemd[1]: Warning! Reported kernel version 4.14.174 is older than systemd's required baseline kernel version 4.15. Your mileage may vary.
+
+Welcome to [1mUbuntu 24.04.4 LTS[0m!
+
+[    1.064560] systemd[1]: Hostname set to <ubuntu>.
+[    1.066040] random: systemd: uninitialized urandom read (16 bytes read)
+[    1.067839] random: systemd: uninitialized urandom read (8 bytes read)
+[    1.165196] random: fast init done
+[    1.188976] systemd[1]: Queued start job for default target graphical.target.
+[    1.192204] systemd[1]: Created slice system-modprobe.slice - Slice /system/modprobe.
+[[0;32m  OK  [0m] Created slice [0;1;39msystem-modprobe.slice[0m - Slice /system/modprobe.
+[    1.195109] systemd[1]: Created slice system-serial\x2dgetty.slice - Slice /system/serial-getty.
+[[0;32m  OK  [0m] Created slice [0;1;39msystem-serial\x2dget…slice[0m - Slice /system/serial-getty.
+[    1.198243] systemd[1]: Created slice user.slice - User and Session Slice.
+[[0;32m  OK  [0m] Created slice [0;1;39muser.slice[0m - User and Session Slice.
+[    1.200710] systemd[1]: Started systemd-ask-password-wall.path - Forward Password Requests to Wall Directory Watch.
+[[0;32m  OK  [0m] Started [0;1;39msystemd-ask-password-wall.…[0md Requests to Wall Directory Watch.
+[    1.203983] systemd[1]: Starting of proc-sys-fs-binfmt_misc.automount - Arbitrary Executable File Formats File System Automount Point unsupported.
+[[0;1;38;5;185mUNSUPP[0m] Starting of [0;1;39mproc-sys-fs-binfmt_mis…[0mSystem Automount Point unsupported.
+[    1.207859] systemd[1]: Expecting device dev-ttyS0.device - /dev/ttyS0...
+         Expecting device [0;1;39mdev-ttyS0.device[0m - /dev/ttyS0...
+[    1.210044] systemd[1]: Reached target integritysetup.target - Local Integrity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mintegritysetup.targ…[0m Local Integrity Protected Volumes.
+[    1.213169] systemd[1]: Reached target slices.target - Slice Units.
+[[0;32m  OK  [0m] Reached target [0;1;39mslices.target[0m - Slice Units.
+[    1.215502] systemd[1]: Reached target snapd.mounts-pre.target - Mounting snaps.
+[[0;32m  OK  [0m] Reached target [0;1;39msnapd.mounts-pre.target[0m - Mounting snaps.
+[    1.218185] systemd[1]: Reached target snapd.mounts.target - Mounted snaps.
+[[0;32m  OK  [0m] Reached target [0;1;39msnapd.mounts.target[0m - Mounted snaps.
+[    1.220736] systemd[1]: Reached target swap.target - Swaps.
+[[0;32m  OK  [0m] Reached target [0;1;39mswap.target[0m - Swaps.
+[    1.222825] systemd[1]: Reached target veritysetup.target - Local Verity Protected Volumes.
+[[0;32m  OK  [0m] Reached target [0;1;39mveritysetup.target[0m - Local Verity Protected Volumes.
+[    1.225898] systemd[1]: Listening on dm-event.socket - Device-mapper event daemon FIFOs.
+[[0;32m  OK  [0m] Listening on [0;1;39mdm-event.socket[0m - Device-mapper event daemon FIFOs.
+[    1.229234] systemd[1]: Listening on lvm2-lvmpolld.socket - LVM2 poll daemon socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mlvm2-lvmpolld.socket[0m - LVM2 poll daemon socket.
+[    1.232113] systemd[1]: Listening on multipathd.socket - multipathd control socket.
+[[0;32m  OK  [0m] Listening on [0;1;39mmultipathd.socket[0m - multipathd control socket.
+[    1.234838] systemd[1]: Listening on syslog.socket - Syslog Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39msyslog.socket[0m - Syslog Socket.
+[    1.237215] systemd[1]: Listening on systemd-fsckd.socket - fsck to fsckd communication Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-fsckd.socket[0m …fsck to fsckd communication Socket.
+[    1.240540] systemd[1]: Listening on systemd-initctl.socket - initctl Compatibility Named Pipe.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-initctl.socke…[0m- initctl Compatibility Named Pipe.
+[    1.243701] systemd[1]: Listening on systemd-journald-dev-log.socket - Journal Socket (/dev/log).
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-journald-dev-…socket[0m - Journal Socket (/dev/log).
+[    1.246842] systemd[1]: Listening on systemd-journald.socket - Journal Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-journald.socket[0m - Journal Socket.
+[    1.249598] systemd[1]: Listening on systemd-networkd.socket - Network Service Netlink Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-networkd.socket[0m - Network Service Netlink Socket.
+[    1.252641] systemd[1]: systemd-pcrextend.socket - TPM2 PCR Extension (Varlink) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[    1.255461] systemd[1]: Listening on systemd-udevd-control.socket - udev Control Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-udevd-control.socket[0m - udev Control Socket.
+[    1.258753] systemd[1]: Listening on systemd-udevd-kernel.socket - udev Kernel Socket.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-udevd-kernel.socket[0m - udev Kernel Socket.
+[    1.262771] systemd[1]: Mounting dev-hugepages.mount - Huge Pages File System...
+         Mounting [0;1;39mdev-hugepages.mount[0m - Huge Pages File System...
+[    1.268604] systemd[1]: Mounting dev-mqueue.mount - POSIX Message Queue File System...
+         Mounting [0;1;39mdev-mqueue.mount[0m - POSIX Message Queue File System...
+[    1.274176] systemd[1]: Mounting sys-kernel-debug.mount - Kernel Debug File System...
+         Mounting [0;1;39msys-kernel-debug.mount[0m - Kernel Debug File System...
+[    1.278261] systemd[1]: sys-kernel-tracing.mount - Kernel Trace File System was skipped because of an unmet condition check (ConditionPathExists=/sys/kernel/tracing).
+[    1.282447] systemd[1]: Starting systemd-journald.service - Journal Service...
+         Starting [0;1;39msystemd-journald.service[0m - Journal Service...
+[    1.291262] systemd[1]: Starting keyboard-setup.service - Set the console keyboard layout...
+         Starting [0;1;39mkeyboard-setup.service[0m - Set the console keyboard layout...
+[    1.294371] systemd[1]: kmod-static-nodes.service - Create List of Static Device Nodes was skipped because of an unmet condition check (ConditionFileNotEmpty=/lib/modules/4.14.174/modules.devname).
+[    1.299439] systemd-journald[546]: Collecting audit messages is disabled.
+[    1.309740] systemd[1]: Starting lvm2-monitor.service - Monitoring of LVM2 mirrors, snapshots etc. using dmeventd or progress polling...
+         Starting [0;1;39mlvm2-monitor.service[0m - Mo…ing dmeventd or progress polling...
+[    1.332182] systemd[1]: Starting modprobe@configfs.service - Load Kernel Module configfs...
+         Starting [0;1;39mmodprobe@configfs.service[0m - Load Kernel Module configfs...
+[    1.351523] systemd[1]: Starting modprobe@dm_mod.service - Load Kernel Module dm_mod...
+         Starting [0;1;39mmodprobe@dm_mod.service[0m - Load Kernel Module dm_mod...
+[    1.373024] systemd[1]: Starting modprobe@drm.service - Load Kernel Module drm...
+         Starting [0;1;39mmodprobe@drm.service[0m - Load Kernel Module drm...
+[    1.381671] systemd[1]: Starting modprobe@efi_pstore.service - Load Kernel Module efi_pstore...
+         Starting [0;1;39mmodprobe@efi_pstore.servi…[0m - Load Kernel Module efi_pstore...
+[    1.388691] systemd[1]: Starting modprobe@fuse.service - Load Kernel Module fuse...
+         Starting [0;1;39mmodprobe@fuse.service[0m - Load Kernel Module fuse...
+[    1.394624] systemd[1]: Starting modprobe@loop.service - Load Kernel Module loop...
+         Starting [0;1;39mmodprobe@loop.service[0m - Load Kernel Module loop...
+[    1.398882] systemd[1]: netplan-ovs-cleanup.service - OpenVSwitch configuration for cleanup was skipped because of an unmet condition check (ConditionFileIsExecutable=/usr/bin/ovs-vsctl).
+[    1.403529] systemd[1]: systemd-fsck-root.service - File System Check on Root Device was skipped because of an unmet condition check (ConditionPathIsReadWrite=!/).
+[    1.406971] systemd[1]: Starting systemd-modules-load.service - Load Kernel Modules...
+         Starting [0;1;39msystemd-modules-load.service[0m - Load Kernel Modules...
+[    1.409582] systemd[1]: systemd-pcrmachine.service - TPM2 PCR Machine ID Measurement was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[    1.416711] systemd[1]: Starting systemd-remount-fs.service - Remount Root and Kernel File Systems...
+         Starting [0;1;39msystemd-remount-fs.servic…[0munt Root and Kernel File Systems...
+[    1.425237] systemd[1]: Starting systemd-tmpfiles-setup-dev-early.service - Create Static Device Nodes in /dev gracefully...
+         Starting [0;1;39msystemd-tmpfiles-setup-de…[0m Device Nodes in /dev gracefully...
+[    1.432990] systemd[1]: systemd-tpm2-setup-early.service - TPM2 SRK Setup (Early) was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+[    1.443104] systemd[1]: Starting systemd-udev-trigger.service - Coldplug All udev Devices...
+         Starting [0;1;39msystemd-udev-trigger.service[0m - Coldplug All udev Devices...
+[    1.462137] systemd[1]: Started systemd-journald.service - Journal Service.
+[[0;32m  OK  [0m] Started [0;1;39msystemd-journald.service[0m - Journal Service.
+[[0;32m  OK  [0m] Mounted [0;1;39mdev-hugepages.mount[0m - Huge Pages File System.
+[[0;32m  OK  [0m] Mounted [0;1;39mdev-mqueue.mount[0m - POSIX Message Queue File System.
+[[0;32m  OK  [0m] Mounted [0;1;39msys-kernel-debug.mount[0m - Kernel Debug File System.
+[[0;32m  OK  [0m] Finished [0;1;39mkeyboard-setup.service[0m - Set the console keyboard layout.
+[[0;32m  OK  [0m] Finished [0;1;39mlvm2-monitor.service[0m - Mo…using dmeventd or progress polling.
+[[0;32m  OK  [0m] Finished [0;1;39mmodprobe@configfs.service[0m - Load Kernel Module configfs.
+[[0;32m  OK  [0m] Finished [0;1;39mmodprobe@dm_mod.service[0m - Load Kernel Module dm_mod.
+[[0;32m  OK  [0m] Finished [0;1;39mmodprobe@drm.service[0m - Load Kernel Module drm.
+[[0;32m  OK  [0m] Finished [0;1;39mmodprobe@efi_pstore.service[0m - Load Kernel Module efi_pstore.
+[[0;32m  OK  [0m] Finished [0;1;39mmodprobe@fuse.service[0m - Load Kernel Module fuse.
+[[0;32m  OK  [0m] Finished [0;1;39mmodprobe@loop.service[0m - Load Kernel Module loop.
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-modules-load.service[0m - Load Kernel Modules.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39msystemd-remount-fs…[0mmount Root and Kernel File Systems.
+See 'systemctl status systemd-remount-fs.service' for details.
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-tmpfiles-setup-de…[0mic Device Nodes in /dev gracefully.
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-udev-trigger.service[0m - Coldplug All udev Devices.
+         Starting [0;1;39mmultipathd.service[0m - Devi…pper Multipath Device Controller...
+         Starting [0;1;39msystemd-journal-flush.ser…[0msh Journal to Persistent Storage...
+[    1.532277] systemd-journald[546]: Received client request to flush runtime journal.
+[    1.534200] systemd-journald[546]: File /var/log/journal/4957c1ebb7334ddd84cec4ac499357f2/system.journal corrupted or uncleanly shut down, renaming and replacing.
+         Starting [0;1;39msystemd-random-seed.service[0m - Load/Save OS Random Seed...
+         Starting [0;1;39msystemd-sysctl.service[0m - Apply Kernel Variables...
+         Starting [0;1;39msystemd-tmpfiles-setup-de…[0meate Static Device Nodes in /dev...
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-journal-flush.ser…[0mlush Journal to Persistent Storage.
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-tmpfiles-setup-de…[0mCreate Static Device Nodes in /dev.
+         Starting [0;1;39msystemd-udevd.service[0m - R…ager for Device Events and Files...
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-sysctl.service[0m - Apply Kernel Variables.
+[[0;32m  OK  [0m] Started [0;1;39msystemd-udevd.service[0m - Ru…anager for Device Events and Files.
+[[0;32m  OK  [0m] Started [0;1;39msystemd-ask-password-conso…[0mequests to Console Directory Watch.
+[[0;32m  OK  [0m] Reached target [0;1;39mcryptsetup.target[0m - Local Encrypted Volumes.
+[[0;1;31mFAILED[0m] Failed to start [0;1;39mmultipathd.service[0m…Mapper Multipath Device Controller.
+See 'systemctl status multipathd.service' for details.
+[[0;32m  OK  [0m] Reached target [0;1;39mlocal-fs-pre.target[0m…Preparation for Local File Systems.
+[[0;32m  OK  [0m] Reached target [0;1;39mlocal-fs.target[0m - Local File Systems.
+[[0;32m  OK  [0m] Listening on [0;1;39msystemd-sysext.socket[0m…tension Image Management (Varlink).
+         Starting [0;1;39mconsole-setup.service[0m - Set console font and keymap...
+         Starting [0;1;39mfinalrd.service[0m - Create …time dir for shutdown pivot root...
+         Starting [0;1;39mplymouth-read-write.servi…[0mymouth To Write Out Runtime Data...
+         Starting [0;1;39msystemd-tmpfiles-setup.se…[0me Volatile Files and Directories...
+         Starting [0;1;39mufw.service[0m - Uncomplicated firewall...
+[[0;32m  OK  [0m] Finished [0;1;39mconsole-setup.service[0m - Set console font and keymap.
+[[0;32m  OK  [0m] Finished [0;1;39mfinalrd.service[0m - Create …untime dir for shutdown pivot root.
+[[0;32m  OK  [0m] Finished [0;1;39mplymouth-read-write.servi…[0mPlymouth To Write Out Runtime Data.
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-tmpfiles-setup.se…[0mate Volatile Files and Directories.
+[[0;32m  OK  [0m] Finished [0;1;39mufw.service[0m - Uncomplicated firewall.
+[[0;32m  OK  [0m] Found device [0;1;39mdev-ttyS0.device[0m - /dev/ttyS0.
+[[0;32m  OK  [0m] Reached target [0;1;39mnetwork-pre.target[0m - Preparation for Network.
+         Starting [0;1;39msystemd-networkd.service[0m - Network Configuration...
+         Starting [0;1;39msystemd-resolved.service[0m - Network Name Resolution...
+         Starting [0;1;39msystemd-timesyncd.service[0m - Network Time Synchronization...
+         Starting [0;1;39msystemd-update-utmp.servi…[0mord System Boot/Shutdown in UTMP...
+[[0;32m  OK  [0m] Finished [0;1;39msystemd-update-utmp.servi…[0mecord System Boot/Shutdown in UTMP.
+[[0;32m  OK  [0m] Started [0;1;39msystemd-networkd.service[0m - Network Configuration.
+         Starting [0;1;39msystemd-networkd-wait-onl…[0mait for Network to be Configured...
+[[0;32m  OK  [0m] Started [0;1;39msystemd-timesyncd.service[0m - Network Time Synchronization.
+[[0;32m  OK  [0m] Reached target [0;1;39mtime-set.target[0m - System Time Set.
+[[0m[0;31m*     [0m] (1 of 3) Job systemd-random-seed.service/start running (2s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.service/start running (3s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.service/start running (4s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.service/start running (4s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.service/start running (5s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (5s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…vice/start running (6s / no limit)
+M[K[     [0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…vice/start running (7s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…vice/start running (7s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (8s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.service/start running (8s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.service/start running (9s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.service/start running (9s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.service/start running (10s / 1min 30s)
+M[K[[0m[0;31m*     [0m] (2 of 3) Job systemd-resolved.service/start running (10s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (11s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (11s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (12s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.service/start running (12s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (13s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (13s / 10min)
+M[K[     [0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (14s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (14s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (15s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (15s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (16s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (16s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.service/start running (17s / 10min)
+M[K[[0m[0;31m*     [0m] (1 of 3) Job systemd-random-seed.service/start running (17s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.service/start running (18s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.service/start running (18s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.service/start running (19s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.service/start running (19s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (20s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (20s / no limit)
+M[K[     [0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (21s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (21s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (22s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.service/start running (22s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.service/start running (23s / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.service/start running (23s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.service/start running (24s / 1min 30s)
+M[K[[0m[0;31m*     [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (24s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (25s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (25s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.service/start running (26s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.service/start running (26s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (27s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (27s / 1min 30s)
+M[K[     [0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (28s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (28s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (29s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (29s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (30s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.service/start running (30s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.service/start running (31s / 10min)
+M[K[[0m[0;31m*     [0m] (1 of 3) Job systemd-random-seed.service/start running (31s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.service/start running (32s / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.service/start running (32s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.service/start running (33s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (33s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (34s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (34s / no limit)
+M[K[     [0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (35s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (35s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (36s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.service/start running (36s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.service/start running (37s / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.service/start running (37s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (38s / no limit)
+M[K[[0m[0;31m*     [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (38s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (39s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.service/start running (39s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.service/start running (40s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.service/start running (40s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (41s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (41s / 1min 30s)
+M[K[     [0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (42s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (42s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (43s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (43s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.service/start running (44s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.service/start running (44s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.service/start running (45s / 10min)
+M[K[[0m[0;31m*     [0m] (2 of 3) Job systemd-resolved.service/start running (45s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.service/start running (46s / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.service/start running (46s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (47s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (47s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (48s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (48s / 10min)
+M[K[     [0;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (49s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.service/start running (49s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (50s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.service/start running (50s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.service/start running (51s / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (51s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (52s / no limit)
+M[K[[0m[0;31m*     [0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (52s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.service/start running (53s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.service/start running (53s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.service/start running (54s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.service/start running (54s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (55s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (55s / 1min 30s)
+M[K[     [0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (56s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (56s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…ice/start running (57s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.service/start running (57s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.service/start running (58s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.service/start running (58s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.service/start running (59s / 1min 30s)
+M[K[[0m[0;31m*     [0m] (2 of 3) Job systemd-resolved.service/start running (59s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.service/start running (1min / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…ce/start running (1min / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…start running (1min 1s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…start running (1min 1s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.se…ce/start running (1min 2s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.se…ce/start running (1min 2s / 10min)
+M[K[     [0;31m*[0m] (1 of 3) Job systemd-random-seed.se…ce/start running (1min 3s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.servi…start running (1min 3s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.servi…start running (1min 4s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.servi…start running (1min 4s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…start running (1min 5s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…start running (1min 5s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…start running (1min 6s / no limit)
+M[K[[0m[0;31m*     [0m] (1 of 3) Job systemd-random-seed.se…ce/start running (1min 6s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.se…ce/start running (1min 7s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (1 of 3) Job systemd-random-seed.se…ce/start running (1min 7s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.servi…start running (1min 8s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.servi…start running (1min 8s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.servi…start running (1min 9s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…start running (1min 9s / no limit)
+M[K[     [0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 10s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 10s / no limit)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 11s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 11s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 12s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 12s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 13s / 1min 30s)
+M[K[[0m[0;31m*     [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 13s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 14s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 14s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 15s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 15s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 16s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 16s / 10min)
+M[K[     [0;31m*[0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 17s / 1min 30s)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 17s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 18s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 18s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 19s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 19s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 20s / 10min)
+M[K[[0m[0;31m*     [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 20s / 10min)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 21s / 10min)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 21s / 1min 30s)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 22s / 1min 30s)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 22s / 1min 30s)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 23s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 23s / no limit)
+M[K[     [0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 24s / no limit)
+M[K[    [0;31m*[0;1;31m*[0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 24s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 25s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 25s / 10min)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 26s / 1min 30s)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 26s / 1min 30s)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 27s / 1min 30s)
+M[K[[0m[0;31m*     [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 27s / no limit)
+M[K[[0;1;31m*[0m[0;31m*    [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 28s / no limit)
+M[K[[0;31m*[0;1;31m*[0m[0;31m*   [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 28s / no limit)
+M[K[ [0;31m*[0;1;31m*[0m[0;31m*  [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 29s / 10min)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 29s / 10min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (1 of 3) Job systemd-random-seed.se…e/start running (1min 30s / 10min)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.servi…tart running (1min 30s / 1min 30s)
+M[K[     [0;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (1min 31s / 3min)
+M[K[    [0;31m*[0;1;31m*[0m] (2 of 3) Job systemd-resolved.service/start running (1min 31s / 3min)
+M[K[   [0;31m*[0;1;31m*[0m[0;31m*[0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 32s / no limit)
+M[K[  [0;31m*[0;1;31m*[0m[0;31m* [0m] (3 of 3) Job systemd-networkd-wait-…tart running (1min 32s / no limit)
+2026-03-17T11:25:59.015463715 [noble-test:fc_api] The API server received a Put request on "/actions" with body "{\"action_type\": \"InstanceStop\"}".
+2026-03-17T11:25:59.015503630 [noble-test:fc_api] SerdeJson(Error("unknown variant `InstanceStop`, expected one of `FlushMetrics`, `InstanceStart`, `SendCtrlAltDel`", line: 1, column: 30))

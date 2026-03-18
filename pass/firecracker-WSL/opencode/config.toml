@@ -1,0 +1,14 @@
+model = "gpt-5.1-codex"
+model_provider = "azure"
+approval_policy = "on-failure"
+network_access = false
+
+[model_providers.azure]
+name = "Azure"
+base_url = "http://10.11.11.11/openai/deployments"
+env_key = "AZURE_OPENAI_API_KEY"
+query_params = { api-version = "preview" }
+wire_api = "responses"
+
+[notice.model_migrations]
+"gpt-5.1-codex" = "gpt-5.1-codex-max"

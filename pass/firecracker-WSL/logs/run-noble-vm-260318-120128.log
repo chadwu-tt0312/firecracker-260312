@@ -1,0 +1,30 @@
+sudo ./scripts/run-noble-vm-with-opencode.sh
+==> Step 0. 檢查環境與參數
+  - VM ID：noble-test
+  - Firecracker：/home/chad/firecracker-260312/bin/firecracker
+  - Kernel：/home/chad/firecracker-260312/bin/vmlinux.bin
+  - Rootfs：/home/chad/firecracker-260312/bin/ubuntu-noble-base.rootfs.ext4
+  - Workdir：/tmp/fc-noble-test
+
+==> Step 1. 建立 tap 介面（簡單單機網路拓樸）
+==> Step 1b. 設定 host NAT（tap=fc-noble-test uplink=eth0 subnet=172.30.0.0/24）
+
+==> Step 2. 啟動 Firecracker process
+  - 等待 API socket 建立...
+
+==> Step 3. 設定 VM（kernel / rootfs / 網路）
+  - machine-config：vcpu_count=2 mem_size_mib=2048
+  - machine-config（readback）：{"vcpu_count":2,"mem_size_mib":2048,"smt":false,"track_dirty_pages":false,"huge_pages":"None"}
+
+==> Step 4. 啟動 VM
+  - VM 已啟動，等待 guest 開機並由 systemd 啟動 opencode-serve.service...
+
+==> Step 5. 由 host 偵測 opencode serve readiness 並量測啟動時間
+說明：
+  - 在 prepare-ubuntu-noble-rootfs.sh 中，我們已建立 systemd 服務：
+      opencode-serve.service -> opencode serve --port 4096 --hostname 0.0.0.0
+  - 這裡由 host 定期對 VM_IP:4096 嘗試 HTTP 連線，第一個成功回應即視為 ready。
+  - 啟動時間（ms） = 從送出 InstanceStart 到第一次成功 HTTP 回應的差值。
+✅ opencode serve 已就緒。啟動時間：約 46149 ms
+  - 已將啟動時間記錄到：/home/chad/firecracker-260312/logs/opencode-startup-noble-test-20260318-120128.json
+==> 清理 VM：停止 Firecracker 與釋放資源
