@@ -1,0 +1,105 @@
+# curl_cmd.txt
+# 說明：
+#  - 本檔案整理自 `scripts/run-noble-vm-with-opencode.sh` 中出現並實際被執行的 curl 指令。
+#  - 其中部分 curl 會透過 `fc_put_json` / `fc_get_json` 等 helper 包裝；此處列出其 curl 模板。
+#  - 變數（例如 ${VM_IP} / ${API_SOCK} / ${SESSION_ID}）保留原樣，便於你套用當次環境。
+
+========================
+# A) Firecracker API（unix-socket）
+========================
+
+# A1) PUT（對應 fc_put_json）
+curl -sS -o /dev/null -w "%{http_code}" \
+  -X PUT --unix-socket "${API_SOCK}" \
+  -H "Content-Type: application/json" \
+  -d "${json}" \
+  "http://localhost${path}"
+
+# A2) GET（對應 fc_get_json）
+curl -sS --unix-socket "${API_SOCK}" "http://localhost${path}"
+
+========================
+# B) Host 等待 opencode serve readiness（Step 5）
+========================
+
+# 成功條件：VM 內 opencode serve 回應 HTTP
+curl -s --max-time 1 "http://${VM_IP}:4096/" >/dev/null 2>&1
+
+========================
+# C) 取得 providers（Step 6）
+========================
+
+curl -sS -o "${PROVIDERS_FILE}" -w "%{http_code}" \
+  --max-time 5 \
+  "http://${VM_IP}:4096/config/providers" || true
+
+========================
+# D) 建立 session（Step 7）
+========================
+
+curl -sS --max-time 5 \
+  -H "Content-Type: application/json" \
+  -d "{\"title\":\"llm-check-${VM_ID}\"}" \
+  "http://${VM_IP}:4096/session" \
+  | python3 -c 'import json,sys; print(json.load(sys.stdin).get("id",""))'
+
+========================
+# E) session 送出 message（Step 7）
+========================
+
+curl -sS --max-time 30 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "parts": [
+      {
+        "type": "text",
+        "text": "目前使用的是哪個 LLM？"
+      }
+    ]
+  }' \
+  "http://${VM_IP}:4096/session/${SESSION_ID}/message" \
+  || true
+
+========================
+# F) Step 8：驗證 ro-skills 掛載 + 要求 calltracker（shell/message/verify）
+========================
+
+# F1) 由 session 呼叫 shell：檢查 CallTracker/SKILL.md 是否存在
+curl -sS -o "${STEP8_SHELL_FILE}" -w "%{http_code}" \
+  --max-time 20 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agent": "build",
+    "command": "set -euo pipefail; sudo test -d /root/.config/opencode/skills; sudo mountpoint -q /root/.config/opencode/skills; ls -la /root/.config/opencode/skills/CallTracker/SKILL.md"
+  }' \
+  "http://${VM_IP}:4096/session/${SESSION_ID}/shell" \
+  || true
+
+# F2) 由 session 呼叫 message：要求落盤寫入 logs/audit_trails.jsonl
+curl -sS -o "${STEP8_REPLY_FILE}" -w "%{http_code}" \
+  --max-time 60 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agent": "build",
+    "tools": {},
+    "parts": [
+      {
+        "type": "text",
+        "text": "請在 VM 內執行一個可稽核的落盤動作（不要只用文字描述）。\\n\\n需求：\\n- 對檔案 `logs/audit_trails.jsonl` 追加 1 行 JSONL（單行 JSON）。\\n- 該 JSON 必須包含欄位：timestamp、agent、task、remarks、status。\\n- 值請填：task=「測試 Agent 呼叫流程」、agent=\\\"user_direct\\\"、remarks=「驗證自動判斷是否需使用工具/skills」、status=\\\"INFO\\\"。\\n\\n完成後請回覆兩段內容：\\n1) 你追加的那一整行 JSONL（原樣貼出）\\n2) 追加後 `logs/audit_trails.jsonl` 的最後一行（用任何方式讀回來驗證）"
+      }
+    ]
+  }' \
+  "http://${VM_IP}:4096/session/${SESSION_ID}/message" \
+  || true
+
+# F3) verify：由 session 呼叫 shell：確認並 tail 最後一行
+curl -sS -o "${STEP8_VERIFY_FILE}" -w "%{http_code}" \
+  --max-time 20 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "agent": "build",
+    "command": "set -euo pipefail; test -f logs/audit_trails.jsonl; tail -n 1 logs/audit_trails.jsonl"
+  }' \
+  "http://${VM_IP}:4096/session/${SESSION_ID}/shell" \
+  || true
+

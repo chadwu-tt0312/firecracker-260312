@@ -17,3 +17,7 @@ tags
 /resources/linux
 /resources/x86_64
 /resources/aarch64
+
+noble-server-cloudimg-amd64-root.tar.xz
+bionic.rootfs.ext4
+ubuntu-noble-base.rootfs.ext4

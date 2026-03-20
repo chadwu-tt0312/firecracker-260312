@@ -178,6 +178,7 @@ set -e
 apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
   ca-certificates curl git \
+  kmod fuse3 \
   python3 python3-pip python3-venv \
   nodejs npm \
   build-essential
