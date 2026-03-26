@@ -90,7 +90,7 @@ flowchart TB
 |------|------|------------------|------|
 | Base rootfs | 內建 opencode、runtime、基礎系統 | 第一顆 block device，root | RO |
 | Shared skills | 平台共用 skills 目錄打包成的映像 | 第二顆 block device | RO |
-| User workspace | 該 user 專屬目錄（持久化） | 第三顆 block device 或 host 檔案服務 | RW |
+| User workspace | 該 user 專屬目錄（持久化） | **Nextcloud WebDAV**（guest 內 `mount-nextcloud-webdav.sh`）或第三顆可寫 ext4（`--workspace-ext4`）；不採 sshfs；virtio-fs 待上游 Firecracker 支援 | RW |
 
 ### Guest 內目錄規劃
 

@@ -5,11 +5,18 @@
 # 目的：啟動 microVM 後取得互動式 shell（透過 SSH）。
 # 前提：rootfs 內已安裝並啟用 openssh-server（prepare 時加 --enable-ssh）。
 #
+# Workspace（可變檔案）：
+#   - 不採用 sshfs（專案腳本不提供、亦不建議）。
+#   - 建議：guest 內掛載公司 Nextcloud WebDAV（/usr/local/bin/mount-nextcloud-webdav.sh）。
+#   - 本機/測試：可選 --workspace-ext4 掛第三顆可寫 ext4（通常為 /dev/vdb 無 ro-skills 時，或 /dev/vdc 有 ro-skills 時）。
+#   - virtio-fs：上游 Firecracker 目前無 virtio-fs API；若未來支援再改由 host virtiofsd 分享目錄。
+#
 # 使用方式：
 #   sudo ./scripts/attach-microvm-shell.sh \
 #     [--kernel <vmlinux>] \
 #     [--rootfs <ubuntu-noble-base.rootfs.ext4>] \
 #     [--ro-skills <ro-skills.ext4>] \
+#     [--workspace-ext4 <writable.ext4>] \
 #     [--vm-id <id>] \
 #     [--detach] \
 #     [--no-cleanup] \
@@ -27,6 +34,7 @@ set -euo pipefail
 KERNEL_PATH=""
 ROOTFS_PATH=""
 RO_SKILLS_PATH=""
+WORKSPACE_EXT4_PATH=""
 VM_ID="noble-test"
 FC_BINARY="${FC_BINARY:-}"
 VM_IP="${VM_IP:-172.30.0.2}"
@@ -46,6 +54,7 @@ usage() {
     [--kernel <vmlinux 路徑>] \
     [--rootfs <ubuntu-noble-base.rootfs.ext4 路徑>] \
     [--ro-skills <ro-skills.ext4 路徑>] \
+    [--workspace-ext4 <可寫 workspace ext4>] \
     [--vm-id <id>] \
     [--detach] \
     [--no-cleanup] \
@@ -61,6 +70,7 @@ usage() {
   - user=root
 
 選項：
+  --workspace-ext4  第三顆可寫 ext4（無 ro-skills 時 guest 多為 /dev/vdb；有 ro-skills 時多為 /dev/vdc）
   --detach     只啟動 VM 並等待 SSH port ready 後就退出（VM 背景保活；等同 --no-cleanup）
   --no-cleanup 腳本結束時不 kill firecracker、不刪 TAP（你需要用 stop-microvm.sh 手動停止）
   --no-nat     不自動設置 host 端 NAT/forward（預設會啟用，讓 VM 有外網）
@@ -72,6 +82,7 @@ while [[ $# -gt 0 ]]; do
     --kernel) KERNEL_PATH="${2:-}"; shift 2;;
     --rootfs) ROOTFS_PATH="${2:-}"; shift 2;;
     --ro-skills) RO_SKILLS_PATH="${2:-}"; shift 2;;
+    --workspace-ext4) WORKSPACE_EXT4_PATH="${2:-}"; shift 2;;
     --vm-id) VM_ID="${2:-}"; shift 2;;
     --detach) DETACH="true"; shift;;
     --no-cleanup) NO_CLEANUP="true"; shift;;
@@ -113,6 +124,10 @@ if [[ ! -f "${ROOTFS_PATH}" ]]; then
 fi
 if [[ -n "${RO_SKILLS_PATH}" && ! -f "${RO_SKILLS_PATH}" ]]; then
   echo "錯誤：找不到 ro-skills 映像：${RO_SKILLS_PATH}"
+  exit 1
+fi
+if [[ -n "${WORKSPACE_EXT4_PATH}" && ! -f "${WORKSPACE_EXT4_PATH}" ]]; then
+  echo "錯誤：找不到 workspace ext4：${WORKSPACE_EXT4_PATH}"
   exit 1
 fi
 
@@ -292,6 +307,15 @@ if [[ -n "${RO_SKILLS_PATH}" ]]; then
   }"
 fi
 
+if [[ -n "${WORKSPACE_EXT4_PATH}" ]]; then
+  fc_put_json "/drives/workspace" "{
+    \"drive_id\": \"workspace\",
+    \"path_on_host\": \"${WORKSPACE_EXT4_PATH}\",
+    \"is_root_device\": false,
+    \"is_read_only\": false
+  }"
+fi
+
 GUEST_MAC="52:54:00:1e:00:02"
 fc_put_json "/network-interfaces/eth0" "{
   \"iface_id\": \"eth0\",
@@ -321,6 +345,13 @@ while :; do
 done
 
 echo "  - VM 狀態檔：${STATE_FILE}"
+if [[ -n "${WORKSPACE_EXT4_PATH}" ]]; then
+  if [[ -n "${RO_SKILLS_PATH}" ]]; then
+    echo "  - 已掛載 workspace ext4：guest 內通常為 /dev/vdc（請自行 mkfs/mount）"
+  else
+    echo "  - 已掛載 workspace ext4：guest 內通常為 /dev/vdb（請自行 mkfs/mount）"
+  fi
+fi
 
 if [[ "${DETACH}" == "true" ]]; then
   echo

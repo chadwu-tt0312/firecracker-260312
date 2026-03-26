@@ -1,0 +1,20 @@
+❯ cd src
+❯ uv sync
+❯ uv run fc-pro-bench-02.py
+🧹 初始化 tmpfs 環境...
+🔎 使用設定：
+  firecracker: /home/chad/firecracker-WSL/bin/firecracker
+  kernel:     /home/chad/firecracker-WSL/bin/vmlinux.bin
+  rootfs:     /home/chad/firecracker-WSL/bin/bionic.rootfs.ext4
+🚀 正在併發啟動 50 個 MicroVM...
+
+========================================
+📊 測試結果 (總耗時: 0.2807s)
+成功啟動 VM 數量: 50 / 50
+失敗 VM 數量: 0
+平均啟動指令延遲: 139.74 ms
+P99 延遲: 258.99 ms
+總記憶體佔用 (RSS): 1090.38 MB
+每個 VM 平均開銷: 21.81 MB
+========================================
+✅ 測試完成，環境已清理。

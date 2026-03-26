@@ -11,6 +11,12 @@
 #   同時建立 OpenCode 的 RO skills 目錄 skeleton：
 #     - ~/.config/opencode/skills（由平台掛載 RO skills）
 #
+# Workspace（使用者可變檔案）策略（與 sshfs 無關）：
+#   - 不採用 sshfs（需 host SSH、反向連線與金鑰管理，維運成本高）。
+#   - 建議由公司 Nextcloud 的 WebDAV 在 guest 內掛載（見 scripts/mount-nextcloud-webdav.sh）；
+#     或於 host 以第三顆可寫 ext4 掛進 VM（attach-microvm-shell.sh / run-noble-vm-with-opencode.sh 的 --workspace-ext4）。
+#   - 上游 Firecracker 目前未提供 virtio-fs 裝置 API；若未來支援，可再改由 host virtiofsd + API 掛載目錄。
+#
 # 適用對象：
 #   Linux / Firecracker 初學者。每一步都會用文字說明「為什麼要做」。
 #
@@ -171,6 +177,8 @@ cat <<'EOF'
       - python3 + pip + venv + uv（Python skills）
       - nodejs + npm（JS skills；可再視需求升級到較新版本）
       - build-essential（某些套件需要編譯 native module）
+      - kmod, fuse3（供 guest 內 FUSE 掛載，例如 rclone mount WebDAV；非 sshfs）
+      - rclone（建議用於 Nextcloud WebDAV；見 scripts/mount-nextcloud-webdav.sh）
 EOF
 
 chroot "${MNT_DIR}" /bin/bash -c "
@@ -178,12 +186,16 @@ set -e
 apt-get update
 DEBIAN_FRONTEND=noninteractive apt-get install -y \
   ca-certificates curl git \
-  kmod fuse3 \
+  kmod fuse3 rclone \
   python3 python3-pip python3-venv \
   nodejs npm \
   build-essential
 apt-get clean || true
 "
+
+echo
+echo "==> Step 5a. 安裝 Nextcloud WebDAV 掛載輔助腳本（guest 內使用）"
+install -m 0755 "${SCRIPT_DIR}/mount-nextcloud-webdav.sh" "${MNT_DIR}/usr/local/bin/mount-nextcloud-webdav.sh"
 
 echo
 echo "==> Step 5b. 在 rootfs 內安裝 uv（Astral 的 Python 套件/虛擬環境工具）"
